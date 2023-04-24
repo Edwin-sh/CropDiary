@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "318308638225",
+    "project_id": "cropdiary",
+    "storage_bucket": "cropdiary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318308638225:android:31da8fbd1298055fca5bb0",
+        "android_client_info": {
+          "package_name": "com.example.cropdiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318308638225-ocepedkilr4mc5c3tks75fgb22tfddpq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cropdiary",
+            "certificate_hash": "726a6b0d49fb85685a227c38bfc1898a4e74b727"
+          }
+        },
+        {
+          "client_id": "318308638225-0fo6bs12vnps3rs4cabd0d99b3hsgc7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMZoTv8dh0KO6FwxHcbUgU4Gx1m-6B4XU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318308638225-0fo6bs12vnps3rs4cabd0d99b3hsgc7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
