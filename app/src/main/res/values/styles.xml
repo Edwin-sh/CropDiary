@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="primaryTextBlack">
+        <item name="android:fontFamily">@font/junegull</item>
+        <item name="android:textColor">@color/primary_text_black</item>
+    </style>
+
+    <style name="secondaryTextBlack" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/junegull</item>
+        <item name="android:textColor">@color/secondary_text_black</item>
+    </style>
+    <style name="primaryTextWhite">
+        <item name="android:fontFamily">@font/junegull</item>
+        <item name="android:textColor">@color/primary_text_white</item>
+    </style>
+
+    <style name="secondaryTextWhite">
+        <item name="android:fontFamily">@font/junegull</item>
+        <item name="android:textColor">@color/secondary_text_white</item>
+    </style>
+
+    <style name="button" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/btn_sign_in</item>
+        <item name="android:textAppearance">@style/secondaryTextBlack</item>
+    </style>
+</resources>
