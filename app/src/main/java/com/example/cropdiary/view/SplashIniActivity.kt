@@ -1,9 +1,9 @@
-package com.example.cropdiary.Main
+package com.example.cropdiary.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.cropdiary.SignIn.AuthActivity
+import com.example.cropdiary.view.Auth.AuthActivity
 import com.example.cropdiary.databinding.ActivitySplashIniBinding
 import java.util.Timer
 import java.util.TimerTask
@@ -27,6 +27,6 @@ class SplashIniActivity : AppCompatActivity() {
         }
 
         val timer =  Timer()
-        timer.schedule(timerTask, 5000)
+        timer.schedule(timerTask, 2500)
     }
 }
