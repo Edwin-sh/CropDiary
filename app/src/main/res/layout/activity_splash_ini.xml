@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main.SplashIniActivity">
+    tools:context=".view.SplashIniActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -12,6 +12,19 @@
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/splash_view" />
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/slogan"
+        android:textSize="20sp"
+        android:fontFamily="@font/junegull"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView" />
 
     <ProgressBar
         android:id="@+id/progressBar"
