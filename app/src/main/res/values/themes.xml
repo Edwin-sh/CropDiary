@@ -4,14 +4,15 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/black</item>
-        <item name="buttonStyle">@style/button</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorSecondaryVariant">@color/secondary_light</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
     </style>
+
+
+    <style name="Theme.CropDiary.Auth" parent="Theme.CropDiary">
+        <item name="android:textStyle">bold</item>
+        <item name="editTextStyle">@style/Theme.CropDiary.Auth.editTextAuth</item>
+        <item name="colorAccent">@color/secondary</item>
+        <item name="buttonStyle">@style/Theme.CropDiary.button</item>
+    </style>
+
 </resources>
