@@ -5,6 +5,7 @@
     <string name="accept">Accept</string>
     <string name="succes">Succes</string>
     <string name="you_dont_have_an_internet_connection">You don\'t have an internet connection</string>
+    <string name="prefs_file">com.example.cropdiary.PREFERENCE_FILE_KEY</string>
 
     //Strings Auth
     <string name="sing_in_with_google">Sing In With Google</string>
