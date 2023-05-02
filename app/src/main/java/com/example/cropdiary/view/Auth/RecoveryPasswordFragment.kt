@@ -17,7 +17,7 @@ class RecoveryPasswordFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentRecoveryPasswordBinding.inflate(layoutInflater)
-        userController = UserController(requireContext())
+        userController = UserController(this)
         //Setup
         setup()
     }
