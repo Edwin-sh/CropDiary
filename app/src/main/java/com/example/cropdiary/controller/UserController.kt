@@ -5,27 +5,36 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.annotation.*
-import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import com.example.cropdiary.R
 import com.example.cropdiary.model.User
 import com.example.cropdiary.util.ProviderType
 import com.example.cropdiary.util.utilities
+import com.example.cropdiary.view.Auth.AuthActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 
-class UserController(
-    @NonNull val context: Context
-) {
+class UserController() {
     val firebaseAuth: FirebaseAuth = Firebase.auth
+    private lateinit var activity: Activity
+    private lateinit var fragment: Fragment
+
+    constructor(activity: Activity) : this() {
+        this.activity=activity
+    }
+    constructor(fragment: Fragment) : this() {
+        this.fragment=fragment
+        this.activity=fragment.requireActivity()
+
+    }
 
     /*private val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val userRef =
@@ -73,21 +82,78 @@ class UserController(
             val errorCode = e.errorCode
             if (errorCode == "ERROR_USER_NOT_FOUND") {
                 utilities.showErrorAlert(
-                    context,
-                    context.getString(R.string.there_is_no_user_with_this_email)
+                    fragment!!.requireContext(),
+                    fragment.getString(R.string.there_is_no_user_with_this_email)
                 )
             } else if (errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
-                utilities.showErrorAlert(context, context.getString(R.string.email_already_in_use))
+                utilities.showErrorAlert(
+                    fragment!!.requireContext(),
+                    fragment.getString(R.string.email_already_in_use)
+                )
             } else if (errorCode == "ERROR_WRONG_PASSWORD") {
-                utilities.showErrorAlert(context, context.getString(R.string.wrong_password))
+                utilities.showErrorAlert(
+                    fragment!!.requireContext(),
+                    fragment.getString(R.string.wrong_password)
+                )
             } else {
                 Log.w("Tag", errorCode)
             }
         } catch (e: Exception) {
             utilities.showErrorAlert(
-                context,
-                context.getString(R.string.an_error_ocurred_authenticating_the_user)
+                fragment!!.requireContext(),
+                fragment.getString(R.string.an_error_ocurred_authenticating_the_user)
             )
+        }
+    }
+
+    fun signInWithGoogle() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("318308638225-4t7bqu1b62v6b5sirb0mgcufk822c52j.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+
+        val googleClient = GoogleSignIn.getClient(activity, gso)
+        fragment!!.startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
+    }
+
+    fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+        callback: (FirebaseUser?) -> Unit
+    ) {
+        if (requestCode == GOOGLE_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Obtenemos la credencial de autenticación de Google
+                val account = task.getResult(ApiException::class.java)!!
+                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+
+                 // Iniciamos sesión con la credencial de autenticación de Google
+                firebaseAuth?.signInWithCredential(credential)
+                    ?.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // La autenticación con Google ha sido exitosa
+                            Log.w(
+                                "Google",
+                                "La autenticación con Google ha fallado: ${task.exception?.message}"
+                            )
+                            callback(task.result!!.user!!)
+                        } else {
+                            // La autenticación con Google ha fallado
+                            Log.w(
+                                "Google",
+                                "La autenticación con Google ha fallado: ${task.exception?.message}"
+                            )
+                            callback(null)
+                        }
+                    }
+            } catch (e: ApiException) {
+                // La autenticación con Google ha fallado
+                Log.w("Google", "La autenticación con Google ha fallado sesion ${e.cause}")
+                Log.e("GoogleSignIn", "ApiException: $e")
+                callback(null)
+            }
         }
     }
 
@@ -150,9 +216,23 @@ class UserController(
         }*/
     }
 
-    fun signOut() {
-        /*firebaseAuth!!.signOut()
-        GoogleSignIn.getClient(activity, GoogleSignInOptions.DEFAULT_SIGN_IN).signOut()
-        activity.startActivity(Intent(activity, SingInActivity::class.java))*/
+    fun signOut(provider:ProviderType) {
+        FirebaseAuth.getInstance().signOut()
+        if (provider== ProviderType.GOOGLE){
+            GoogleSignIn.getClient(activity, GoogleSignInOptions.DEFAULT_SIGN_IN).signOut()
+        }
+        //Delete user auth info
+        val prefs=activity.getSharedPreferences(activity.getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+        prefs.clear()
+        prefs.apply()
+
+        activity.startActivity(
+            Intent(activity, AuthActivity::class.java)
+        )
+        activity.finish()
+    }
+
+    companion object{
+        val GOOGLE_SIGN_IN = 100
     }
 }
