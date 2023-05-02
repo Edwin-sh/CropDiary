@@ -10,19 +10,19 @@ import android.widget.EditText
 import com.example.cropdiary.view.main.*
 import com.example.cropdiary.R
 import com.example.cropdiary.controller.UserController
-import com.example.cropdiary.databinding.FragmentSignInBinding
+import com.example.cropdiary.databinding.FragmentAuthBinding
 import com.example.cropdiary.model.User
 import com.example.cropdiary.util.FragmentsConstants
 import com.example.cropdiary.util.ProviderType
 import com.example.cropdiary.util.utilities
 
 class AuthFragment : Fragment() {
-    private lateinit var binding: FragmentSignInBinding
+    private lateinit var binding: FragmentAuthBinding
     private lateinit var userController: UserController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentSignInBinding.inflate(layoutInflater)
-        userController = UserController(requireContext())
+        binding = FragmentAuthBinding.inflate(layoutInflater)
+        userController = UserController(this)
         //Setup
         setup()
     }
@@ -39,6 +39,7 @@ class AuthFragment : Fragment() {
         with(binding) {
             btnSignUp.setOnClickListener { signUp() }
             btnSignIn.setOnClickListener { signIn() }
+            btnSignInWithGoogle.setOnClickListener { signInWithGoogle() }
             tvForgotPassword.setOnClickListener { showForgotPassword() }
         }
     }
@@ -69,9 +70,9 @@ class AuthFragment : Fragment() {
                     editTextEmailAddress.text.toString(),
                     editTextPassword.text.toString()
                 )
-            ){firebaseUser->
+            ) { firebaseUser ->
                 if (firebaseUser != null) {
-                    utilities.showSuccesAlert(requireContext(), "Se registró correctamente"){
+                    utilities.showSuccesAlert(requireContext(), "Se registró correctamente") {
                         showPantallaInicial(firebaseUser.email!!, ProviderType.BASIC)
                     }
 
@@ -111,66 +112,20 @@ class AuthFragment : Fragment() {
         }
     }
 
-
-    /*override fun onStart() {
-    super.onStart()
-    // Check if user is signed in (non-null) and update UI accordingly.
-    val currentUser = auth.currentUser
+    private fun signInWithGoogle() {
+        userController.signInWithGoogle()
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data)
-
-    // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-    if (requestCode == 9001) {
-        val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-        try {
-            // Google Sign In was successful, authenticate with Firebase
-            val account = task.getResult(ApiException::class.java)!!
-            Log.d("succes", "firebaseAuthWithGoogle:" + account.id)
-            firebaseAuthWithGoogle(account.idToken!!)
-
-        } catch (e: ApiException) {
-            // Google Sign In failed, update UI appropriately
-            Log.w("error", "Google sign in failed", e)
-        }
-    }
-    }
-
-    private fun firebaseAuthWithGoogle(idToken: String) {
-    val credential = GoogleAuthProvider.getCredential(idToken, null)
-    auth.signInWithCredential(credential)
-        .addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
-                //Valida si es nuevo usuario
-                val isNewUser = task.result?.additionalUserInfo?.isNewUser
-                val userController = UserController(this)
-                if (isNewUser == true) {
-                    //Si es nuevo le crea la colección
-                    userController.createUser()
-                    showPantallaSignUp()
-                } else {
-                    userController.getUser(){user ->
-                        if (user != null) {
-                            showPantallaInicial()
-                        } else {
-                            showPantallaSignUp()
-                        }
-                    }
-                }
-            } else {
-                // If sign in fails, display a message to the user.
-                Log.w("TAG", "signInWithCredential:failure", task.exception)
+        super.onActivityResult(requestCode, resultCode, data)
+        userController.onActivityResult(requestCode, resultCode, data) {
+            if (it != null) {
+                showPantallaInicial(it.email!!, ProviderType.GOOGLE)
             }
         }
+
     }
 
-    private fun signIn() {
-    val signInIntent = googleSignInClient.signInIntent
-    startActivityForResult(signInIntent, 9001)
-    }
-    */
     private fun showPantallaInicial(email: String, provider: ProviderType) {
 
         requireActivity().startActivity(
