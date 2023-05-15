@@ -15,6 +15,9 @@
         android:theme="@style/Theme.CropDiary"
         tools:targetApi="31">
         <activity
+            android:name=".view.user.CreateUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.MainActivity"
             android:exported="false" />
         <activity
@@ -29,7 +32,7 @@
         <activity
             android:name=".view.Auth.AuthActivity"
             android:exported="false"
-            android:theme="@style/Theme.CropDiary.Auth"></activity>
+            android:theme="@style/Theme.CropDiary.Auth" />
     </application>
 
 </manifest>
