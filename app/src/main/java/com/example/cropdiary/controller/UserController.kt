@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.annotation.*
 import androidx.fragment.app.Fragment
 import com.example.cropdiary.R
-import com.example.cropdiary.model.User
+import com.example.cropdiary.model.UserModel
+import com.example.cropdiary.util.FirebaseReferences
 import com.example.cropdiary.util.ProviderType
 import com.example.cropdiary.util.utilities
 import com.example.cropdiary.view.Auth.AuthActivity
@@ -23,7 +23,8 @@ import com.google.firebase.ktx.Firebase
 
 
 class UserController() {
-    val firebaseAuth: FirebaseAuth = Firebase.auth
+    private val firebaseAuth: FirebaseAuth = Firebase.auth
+    private val usersCollection=FirebaseReferences.FIRESTORE.collection(FirebaseReferences.USERS_COLLECTION)
     private lateinit var activity: Activity
     private lateinit var fragment: Fragment
 
@@ -40,8 +41,8 @@ class UserController() {
     private val userRef =
         firebaseFirestore.collection("users").document(firebaseAuth.currentUser!!.email!!)
 */
-    fun signUpUser(user: User, callback: (FirebaseUser?) -> Unit) {
-        firebaseAuth.createUserWithEmailAndPassword(user.idEmail, user.password)
+    fun signUpUser(userModel: UserModel, callback: (FirebaseUser?) -> Unit) {
+        firebaseAuth.createUserWithEmailAndPassword(userModel.idEmail, userModel.password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     callback(it.result?.user)
@@ -52,8 +53,8 @@ class UserController() {
             }
     }
 
-    fun signInUser(user: User, callback: (FirebaseUser?) -> Unit) {
-        firebaseAuth.signInWithEmailAndPassword(user.idEmail, user.password)
+    fun signInUser(userModel: UserModel, callback: (FirebaseUser?) -> Unit) {
+        firebaseAuth.signInWithEmailAndPassword(userModel.idEmail, userModel.password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     callback(it.result?.user)
@@ -134,17 +135,9 @@ class UserController() {
                     ?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             // La autenticación con Google ha sido exitosa
-                            Log.w(
-                                "Google",
-                                "La autenticación con Google ha fallado: ${task.exception?.message}"
-                            )
                             callback(task.result!!.user!!)
                         } else {
                             // La autenticación con Google ha fallado
-                            Log.w(
-                                "Google",
-                                "La autenticación con Google ha fallado: ${task.exception?.message}"
-                            )
                             callback(null)
                         }
                     }
@@ -161,24 +154,24 @@ class UserController() {
         /*userRef.get().addOnSuccessListener { document ->
             if (!document.exists()) {
                 userRef.set(hashMapOf<String, String>()).addOnSuccessListener {
-                    Log.d("User Controller", "Se creó el documento")
+                    Log.d("UserModel Controller", "Se creó el documento")
                 }.addOnFailureListener { e ->
-                    Log.e("User Controller", "Ocurrió un error al crear el documento", e)
+                    Log.e("UserModel Controller", "Ocurrió un error al crear el documento", e)
                 }
             } else {
-                Log.w("User Controller", "Ya existía el documento")
+                Log.w("UserModel Controller", "Ya existía el documento")
             }
         }*/
     }
 
-    fun registreUser(user: User, activity: Activity, callback: (Boolean) -> Unit) {
+    fun registreUser(userModel: UserModel, activity: Activity, callback: (Boolean) -> Unit) {
         /*userRef.set(
             hashMapOf<String, String>(
-                "photoProfile" to user.photoProfile,
-                "name" to user.name,
-                "lastname" to user.lastname,
-                "phoneNumber" to user.phoneNumber,
-                "idCardNumber" to user.idCardNumber
+                "photoProfile" to userModel.photoProfile,
+                "name" to userModel.name,
+                "lastname" to userModel.lastname,
+                "phoneNumber" to userModel.phoneNumber,
+                "idCardNumber" to userModel.idCardNumber
             )
         ).addOnSuccessListener {
             AlertDialog.Builder(activity).setMessage("Se creó correctamente el usuario")
@@ -193,10 +186,10 @@ class UserController() {
         }*/
     }
 
-    fun getUser(callback: (User?) -> Unit) {
-        /*userRef.get().addOnSuccessListener { document ->
+    fun getUser(email:String, callback: (UserModel?) -> Unit) {
+        usersCollection.document(email).get().addOnSuccessListener { document ->
             if (document.data != null && document.data!!.isNotEmpty()) {
-                val user = User(
+                val userModel = UserModel(
                     document.id,
                     "",
                     document["photoProfile"].toString(),
@@ -205,15 +198,15 @@ class UserController() {
                     document["phoneNumber"].toString(),
                     document["identificationNumber"].toString()
                 )
-                callback(user)
+                callback(userModel)
             } else {
-                Log.w("User Controller", "No tiene datos")
+                Log.w("UserModel Controller", "No tiene datos")
                 callback(null)
             }
         }.addOnFailureListener {
-            Log.e("User Controller", "Error al obtener User")
+            Log.e("UserModel Controller", "Error al obtener UserModel")
             callback(null)
-        }*/
+        }
     }
 
     fun signOut(provider:ProviderType) {
