@@ -11,7 +11,7 @@ import com.example.cropdiary.view.main.*
 import com.example.cropdiary.R
 import com.example.cropdiary.controller.UserController
 import com.example.cropdiary.databinding.FragmentAuthBinding
-import com.example.cropdiary.model.User
+import com.example.cropdiary.model.UserModel
 import com.example.cropdiary.util.FragmentsConstants
 import com.example.cropdiary.util.ProviderType
 import com.example.cropdiary.util.utilities
@@ -65,8 +65,8 @@ class AuthFragment : Fragment() {
                 return@with
             }
 
-            val userAuthResult = userController.signUpUser(
-                User(
+            val userModelAuthResult = userController.signUpUser(
+                UserModel(
                     editTextEmailAddress.text.toString(),
                     editTextPassword.text.toString()
                 )
@@ -100,7 +100,7 @@ class AuthFragment : Fragment() {
                 return@with
             }
             userController.signInUser(
-                User(
+                UserModel(
                     editTextEmailAddress.text.toString(),
                     editTextPassword.text.toString()
                 )
@@ -116,6 +116,7 @@ class AuthFragment : Fragment() {
         userController.signInWithGoogle()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         userController.onActivityResult(requestCode, resultCode, data) {
