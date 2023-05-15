@@ -24,16 +24,16 @@ class MainActivity : AppCompatActivity() {
         userController = UserController(this)
         //Setup
         val bundle = intent.extras
-        email = bundle?.getString("email").toString()
-        provider = bundle?.getString("provider").toString()
+        email = bundle?.getString(getString(R.string.email_pref)).toString()
+        provider = bundle?.getString(getString(R.string.provider_pref)).toString()
         setup(email ?: "", provider ?: "")
         Log.i("Main email: ", email!!)
         Log.i("Main provider: ", provider!!)
         //Save user auth info
         val prefs =
             getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-        prefs.putString("email", email)
-        prefs.putString("provider", provider)
+        prefs.putString(getString(R.string.email_pref), email)
+        prefs.putString(getString(R.string.provider_pref), provider)
         prefs.apply()
     }
 
