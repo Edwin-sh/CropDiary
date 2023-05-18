@@ -1,16 +1,15 @@
 package com.example.cropdiary.util
 
 import android.content.Context
-import android.content.DialogInterface
 import android.net.ConnectivityManager
-import android.util.Log
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cropdiary.R
-import org.apache.commons.validator.*
+import org.apache.commons.validator.EmailValidator
+import org.apache.commons.validator.GenericValidator
 
-public class utilities : AppCompatActivity() {
+public class Utilities : AppCompatActivity() {
     companion object {
 
         fun networkConnection(context: Context): Boolean { //Internet Access Verification
@@ -36,7 +35,7 @@ public class utilities : AppCompatActivity() {
             dialog.show()
         }
 
-        fun showSuccesAlert(context: Context, message: String, metodo:Function1<Context, Unit>) {
+        fun showSuccesAlert(context: Context, message: String, metodo: Function1<Context, Unit>) {
             val builder = AlertDialog.Builder(context)
             builder.setTitle(context.getString(R.string.succes))
             builder.setMessage(message)
@@ -44,6 +43,7 @@ public class utilities : AppCompatActivity() {
             val dialog = builder.create()
             dialog.show()
         }
+
         fun showSuccesAlert(context: Context, message: String) {
             val builder = AlertDialog.Builder(context)
             builder.setTitle(context.getString(R.string.succes))
