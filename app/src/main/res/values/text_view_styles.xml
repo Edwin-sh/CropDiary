@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.CropDiary.textView.RegistreUser" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/Theme.CropDiary.Text.PrimaryTextBlack</item>
+        <item name="android:textSize">@dimen/Theme.CropDiary.Text.Short</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="font">@font/roboto</item>
+    </style>
+</resources>
