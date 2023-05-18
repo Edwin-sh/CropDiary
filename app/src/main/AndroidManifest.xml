@@ -15,13 +15,13 @@
         android:theme="@style/Theme.CropDiary"
         tools:targetApi="31">
         <activity
-            android:name=".view.user.CreateUserActivity"
+            android:name=".ui.view.user.RegistreUserActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.MainActivity"
+            android:name=".ui.view.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SplashIniActivity"
+            android:name=".ui.view.SplashIniActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.Auth.AuthActivity"
+            android:name=".ui.view.Auth.AuthActivity"
             android:exported="false"
             android:theme="@style/Theme.CropDiary.Auth" />
     </application>
