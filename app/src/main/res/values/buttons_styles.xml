@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.CropDiary.button" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/primary_text_black</item>
+    </style>
+
+    <style name="Theme.CropDiary.button.dialogButton" parent="Theme.CropDiary.button">
+        <item name="android:background">@drawable/btn_medium</item>
+        <item name="backgroundTint">@color/secondary_dark</item>
+        <item name="android:textColor">@color/Theme.CropDiary.Text.PrimaryTextBlack</item>
+        <item name="android:textSize">@dimen/Theme.CropDiary.Text.Medium</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+</resources>
