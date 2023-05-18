@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <font name="Theme.CropDiary.Text">
+        <item name="font">@font/roboto</item>
+    </font>
+    <dimen name="Theme.CropDiary.Text.Short">
+        16sp
+    </dimen>
+    <dimen name="Theme.CropDiary.Text.Medium">
+        24sp
+    </dimen>
+    <dimen name="Theme.CropDiary.Text.Large">
+        32sp
+    </dimen>
+    <color name="Theme.CropDiary.Text.PrimaryTextBlack">
+        @color/primary_text_black
+    </color>
+    <color name="Theme.CropDiary.Text.SecondaryTextBlack">
+        @color/secondary_text_black
+    </color>
+    <color name="Theme.CropDiary.Text.PrimaryTextWhite">
+        @color/primary_text_white
+    </color>
+    <color name="Theme.CropDiary.Text.SecondaryTextWhite">
+        @color/secondary_text_white
+    </color>
+</resources>
