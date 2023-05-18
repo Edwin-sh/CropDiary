@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sing_in_with_google">Iniciar Sesion Con Google</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="forgot_your_password">¿Olvidaste tu contraseña?</string>
+    <string name="sign_in">Acceder</string>
+    <string name="sign_up">Registrar</string>
+    <string name="you_must_enter_the_email">Debe ingresar el correo</string>
+    <string name="you_must_enter_the_password">Debe ingresar la contraseña</string>
+    <string name="you_must_repeat_the_password">Debe repetir la contraseña</string>
+    <string name="you_must_enter_a_valid_email">Debe ingresar un correo válido</string>
+    <string name="the_password_must_be_at_least_8_digits">La contraseña debe tener mínimo 8 dígitos</string>
+    <string name="password_must_have_at_least_one_digit_and_one_uppercase_letter">La contraseña debe tener al menos un dígito y una letra mayúscula</string>
+    <string name="an_error_ocurred_authenticating_the_user">Se ha producido un error autenticando al usuario</string>
+    <string name="there_is_no_user_with_this_email">No existe usuario con este correo electrónico</string>
+    <string name="email_already_in_use">Este correo ya esta en uso</string>
+    <string name="recovery_password">Recuperar contraseña</string>
+    <string name="wrong_password">Contraseña incorrecta</string>
+    <string name="we_have_sent_an_email_to_reset_your_password">Hemos enviado un correo electronico para reestablecer su contraseña</string>
+
+</resources>
