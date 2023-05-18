@@ -1,32 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.CropDiary.primaryTextBlack">
-        <item name="android:textColor">@color/primary_text_black</item>
-    </style>
 
-    <style name="Theme.CropDiary.secondaryTextBlack">
-        <item name="android:textColor">@color/secondary_text_black</item>
-    </style>
-    <style name="Theme.CropDiary.primaryTextWhite">
-        <item name="android:textColor">@color/primary_text_white</item>
-    </style>
-
-    <style name="Theme.CropDiary.secondaryTextWhite">
-        <item name="android:textColor">@color/secondary_text_white</item>
-    </style>
-
-    <style name="Theme.CropDiary.button" parent="@android:style/Widget.Button">
-        <item name="android:textColor">@color/primary_text_black</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="Theme.CropDiary.Title" parent="Theme.CropDiary.primaryTextBlack">
+    <style name="Theme.CropDiary.Title">
+        <item name="android:textColor">@color/Theme.CropDiary.Text.PrimaryTextBlack</item>
         <item name="android:textSize">25sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="Theme.CropDiary.Auth.editTextAuth" parent="Widget.AppCompat.EditText">
-        <item name="android:textAppearance">@style/Theme.CropDiary.primaryTextBlack</item>
+        <item name="android:textColor">@color/Theme.CropDiary.Text.PrimaryTextBlack</item>
         <item name="android:textColorHint">@color/secondary_text_black</item>
         <item name="android:textSize">18sp</item>
         <item name="android:padding">10dp</item>
