@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="are_you_a_new_user_n_please_enter_the_next_info">Are you a new user?\nPlease enter the next info</string>
+    <string name="registration_form">Registration Form</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="names">Names</string>
+    <string name="last_names">Last Names</string>
+    <string name="phone_number">Phone number</string>
+    <string name="id_number">ID Number</string>
+    <string name="by_registering_you_accept_our">By registering, you accept our</string>
+    <string name="privacy_and_data_processing_policies">Privacy and Data Processing Policies</string>
+    <string name="accept_the_privacy_confirmation">I confirm that I have read and accept the Privacy and Data Processing Policies</string>
+    <string name="privacy_agreement">Privacy agreement</string>
+    <string name="title_privacy_terms">Privacy and Data Handling Policies of CropDiary</string>
+    <string name="introduction_privacy_terms">Thank you for using CropDiary, an application designed to help you manage and record information related to your crops. Before you begin using it, it is important to read and understand our privacy and data handling policies. By using this application, you agree to the following conditions:</string>
+    <string name="first_privacy_term">1.    Data Collected: CropDiary collects and stores the following personal data: names, surnames, phone number, email address, and other data necessary to provide the complete functionality of the application. These data help us personalize your experience and improve our services.</string>
+    <string name="second_privacy_term">2.   Use of Data: The collected personal data are used solely for the purpose of offering you optimal functionality of CropDiary. This includes features such as profile creation, crop management, and relevant notifications. We will not use your data for advertising purposes without your explicit consent.</string>
+    <string name="third_term">3.    Data Sharing: We will not share your personal data with third parties unrelated to the application unless strictly necessary for the functioning of CropDiary or with your prior consent. In the event of future collaborations or business partnerships directly related to the application, only the necessary data will be shared for such collaborations, aiming to provide you with a more comprehensive service.</string>
+    <string name="fourth_term">4.   Data Security: The security of your personal data is a priority for us. We implement technical and organizational security measures to protect your information against unauthorized access, loss, alteration, or disclosure. However, please note that no security measure on the Internet is completely infallible.</string>
+    <string name="fifth_term">5.    Payments: Currently, CropDiary does not process payments within the application. If payment features are incorporated in future updates, secure methods will be used, and you will be clearly informed about the processes and policies related to such payments.</string>
+    <string name="sixth_term">6.    Cookies: CropDiary uses cookies and similar technologies to enhance your user experience and provide additional features. You can adjust your cookie preferences in your device settings.</string>
+    <string name="final_text_privacy_terms">By using CropDiary, you confirm that you have read, understood, and accepted our privacy and data handling policies.\nIf you have any questions, concerns, or requests related to your personal data, please contact us at [contact email], and we will be happy to assist you.\nWe appreciate your trust in using CropDiary to effectively and securely manage your crops.\n\nThe CropDiary Team</string>
+</resources>
