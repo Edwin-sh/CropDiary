@@ -1,15 +1,16 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.CropDiary" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="font">@font/roboto</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 
     <style name="Theme.CropDiary.Auth" parent="Theme.CropDiary">
-        <item name="android:textStyle">bold</item>
         <item name="editTextStyle">@style/Theme.CropDiary.Auth.editTextAuth</item>
         <item name="colorAccent">@color/secondary</item>
         <item name="buttonStyle">@style/Theme.CropDiary.button</item>
