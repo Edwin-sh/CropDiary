@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="are_you_a_new_user_n_please_enter_the_next_info">¿Eres un usuario nuevo?\nPor favor, introduce la siguiente información</string>
+    <string name="registration_form">Formulario De Registro</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="names">Names</string>
+    <string name="last_names">Last Names</string>
+    <string name="phone_number">Phone number</string>
+    <string name="id_number">ID Number</string>
+    <string name="by_registering_you_accept_our">Al registrarte, aceptas nuestras</string>
+    <string name="privacy_and_data_processing_policies">Políticas de Privacidad y Tratamiento de Datos</string>
+    <string name="accept_the_privacy_confirmation">Confirmo que he leído y acepto las Políticas de Privacidad y Tratamiento de Datos</string>
+    <string name="privacy_agreement">Acuerdo de Privacidad</string>
+    <string name="title_privacy_terms">Políticas de Privacidad y Tratamiento de Datos de CropDiary</string>
+    <string name="introduction_privacy_terms">Gracias por utilizar CropDiary, una aplicación diseñada para ayudarte a gestionar y registrar información relacionada con tus cultivos. Antes de comenzar a utilizarla, es importante que leas y comprendas nuestras políticas de privacidad y tratamiento de datos. Al utilizar esta aplicación, aceptas las siguientes condiciones:</string>
+    <string name="first_privacy_term">1.    Datos Recopilados: CropDiary recopila y almacena los siguientes datos personales: nombres, apellidos, número de teléfono, correo electrónico y otros datos necesarios para brindar el servicio completo de la aplicación. Estos datos nos ayudan a personalizar tu experiencia y mejorar nuestros servicios.</string>
+    <string name="second_privacy_term">2.    Uso de los Datos: Los datos personales recopilados se utilizan únicamente con el propósito de ofrecerte un funcionamiento óptimo de CropDiary. Esto incluye funciones como la creación de perfiles, la gestión de tus cultivos y el envío de notificaciones relevantes. No utilizaremos tus datos con fines publicitarios sin tu consentimiento explícito.</string>
+    <string name="third_term">3.    Compartir Datos: No compartiremos tus datos personales con terceros no relacionados con la aplicación, a menos que sea estrictamente necesario para el funcionamiento de CropDiary o con tu consentimiento previo. En el caso de que en el futuro existan colaboraciones o socios comerciales relacionados directamente con la aplicación, solo se compartirán los datos necesarios para dichas colaboraciones y con el objetivo de brindarte un servicio más completo.</string>
+    <string name="fourth_term">4.   Seguridad de los Datos: La seguridad de tus datos personales es una prioridad para nosotros. Implementamos medidas de seguridad técnicas y organizativas para proteger tu información contra accesos no autorizados, pérdida, alteración o divulgación. Sin embargo, ten en cuenta que ninguna medida de seguridad en Internet es absolutamente infalible.</string>
+    <string name="fifth_term">5.    Pagos: Actualmente, CropDiary no procesa pagos dentro de la aplicación. Si en futuras actualizaciones se incorporan funciones de pago, se utilizarán métodos seguros y se te informará claramente sobre los procesos y las políticas relacionadas con dichos pagos.</string>
+    <string name="sixth_term">6.    Cookies: CropDiary utiliza cookies y tecnologías similares para mejorar tu experiencia de usuario y ofrecerte funciones adicionales. Puedes ajustar tus preferencias de cookies en la configuración de tu dispositivo.</string>
+    <string name="final_text_privacy_terms">Al utilizar CropDiary, confirmas que has leído, entendido y aceptado nuestras políticas de privacidad y tratamiento de datos.\nSi tienes alguna pregunta, inquietud o solicitud relacionada con tus datos personales, por favor, contáctanos a través de [correo de contacto] y estaremos encantados de ayudarte.\nAgradecemos tu confianza al utilizar CropDiary para gestionar tus cultivos de manera efectiva y segura.\n\nEl equipo de CropDiary</string>
+</resources>
