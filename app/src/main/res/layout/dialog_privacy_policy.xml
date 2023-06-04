@@ -130,7 +130,7 @@
                     <Button
                         android:id="@+id/btnCloseDialog"
                         style="@style/Theme.CropDiary.button.dialogButton"
-                        android:layout_width="100dp"
+                        android:layout_width="130dp"
                         android:layout_height="48dp"
                         android:text="Close" />
                 </LinearLayout>
