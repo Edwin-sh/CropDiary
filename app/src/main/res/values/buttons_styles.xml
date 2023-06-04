@@ -10,6 +10,7 @@
         <item name="backgroundTint">@color/secondary_dark</item>
         <item name="android:textColor">@color/Theme.CropDiary.Text.PrimaryTextBlack</item>
         <item name="android:textSize">@dimen/Theme.CropDiary.Text.Medium</item>
+        <item name="android:textAllCaps">true</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:layout_marginBottom">8dp</item>
     </style>
