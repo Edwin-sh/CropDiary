@@ -2,7 +2,6 @@ package com.example.cropdiary.data.auth
 
 import android.util.Log
 import com.example.cropdiary.R
-import com.example.cropdiary.core.FirebaseHelper
 import com.example.cropdiary.data.model.UserModel
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
@@ -12,10 +11,9 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class AuthService() : IAuthService {
-    private val firebaseAuth: FirebaseAuth = FirebaseHelper.getFirebaseAuth()
-
+class AuthService @Inject constructor(private val firebaseAuth: FirebaseAuth) : IAuthService {
     override suspend fun signUpWithEmail(userModel: UserModel): Result<FirebaseUser?> {
         return withContext(Dispatchers.IO) {
             try {
@@ -75,7 +73,7 @@ class AuthService() : IAuthService {
     ): Result<Boolean> {
         return try {
             //Firebase Auth SignOut
-            FirebaseHelper.getFirebaseAuth().signOut()
+            firebaseAuth.signOut()
             if (provider == ProviderType.GOOGLE) {
                 //SignOut Google
                 googleSignInClient.signOut()

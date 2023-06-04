@@ -14,20 +14,27 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.cropdiary.R
-import com.example.cropdiary.core.FirebaseHelper
 import com.example.cropdiary.core.SharedPrefUserHelper
 import com.example.cropdiary.data.auth.ProviderType
 import com.example.cropdiary.databinding.ActivityCreateUserBinding
 import com.example.cropdiary.databinding.DialogPrivacyPolicyBinding
 import com.example.cropdiary.ui.view.Auth.AuthActivity
 import com.example.cropdiary.ui.viewmodel.AuthViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Singleton
 
+@AndroidEntryPoint
+@Singleton
 class RegistreUserActivity : AppCompatActivity() {
+    @Inject lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var binding: ActivityCreateUserBinding
     private lateinit var binding12: DialogPrivacyPolicyBinding
     private val authViewModel: AuthViewModel by viewModels()
     private lateinit var email: String
     private lateinit var provider: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateUserBinding.inflate(layoutInflater)
@@ -41,7 +48,7 @@ class RegistreUserActivity : AppCompatActivity() {
             buttonCancelaRegistro.setOnClickListener {
                 authViewModel.signOut(
                     ProviderType.valueOf(provider),
-                    FirebaseHelper.getGoogleSignInClient(parent)
+                    googleSignInClient
                 )
             }
             buttonSave.isEnabled = false

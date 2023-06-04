@@ -5,12 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cropdiary.data.model.UserModel
 import com.example.cropdiary.domain.user.GetUserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UserViewModel : ViewModel() {
+@HiltViewModel
+class UserViewModel @Inject constructor(private val getUserUseCase :GetUserUseCase): ViewModel() {
     val userModel = MutableLiveData<Result<UserModel?>>()
     val userResultModel = MutableLiveData<Result<Boolean>?>()
-    private var getUserUseCase = GetUserUseCase()
     fun getUser(email: String) {
         viewModelScope.launch {
             val result = getUserUseCase(email)

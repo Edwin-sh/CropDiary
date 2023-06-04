@@ -49,7 +49,7 @@ class RecoveryPasswordFragment : Fragment() {
                     it.exceptionOrNull()?.message?.toInt()?.let { it1 -> getString(it1) }
                         ?.let { it2 ->
                             Utilities.showErrorAlert(
-                                requireContext(),
+                                requireActivity(),
                                 it2
                             )
                         }
@@ -68,17 +68,17 @@ class RecoveryPasswordFragment : Fragment() {
                     Pair(
                         editTextEmailAddress,
                         getString(R.string.you_must_enter_the_email)
-                    ), requireContext()
+                    ), requireActivity()
                 )
             ) {
                 return@with
             }
 
-            if (!Utilities.isValid(editTextEmailAddress, requireContext())) {
+            if (!Utilities.isValid(editTextEmailAddress, requireActivity())) {
                 return@with
             }
 
-            if (!Utilities.networkConnection(requireContext())) {
+            if (!Utilities.networkConnection(requireActivity())) {
                 return@with
             }
 

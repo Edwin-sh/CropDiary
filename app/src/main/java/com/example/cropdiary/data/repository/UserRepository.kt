@@ -10,9 +10,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 
-class UserRepository() : IUserRepository {
+class UserRepository @Inject constructor() : IUserRepository {
 
     private val database: FirebaseFirestore = FirebaseHelper.getFirebaseFirestore()
     private val usersCollection: CollectionReference =

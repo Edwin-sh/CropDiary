@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -38,7 +40,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -56,14 +57,19 @@ dependencies {
     // Firebase platform
     implementation platform('com.google.firebase:firebase-bom:31.4.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.5.0'
     //Google Play services library
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
     //Apache commons validator para validaciones
     implementation 'commons-validator:commons-validator:1.7'
-    //Import lombok
-    implementation 'org.projectlombok:lombok:1.18.26'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.5.0'
+    //Dagger Hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
 }

@@ -13,6 +13,7 @@ import com.example.cropdiary.R
 import com.example.cropdiary.core.FirebaseHelper
 import com.example.cropdiary.core.FragmentsConstants
 import com.example.cropdiary.core.SharedPrefUserHelper
+import com.example.cropdiary.core.auth.GoogleServerClientIdProvider
 import com.example.cropdiary.data.auth.ProviderType
 import com.example.cropdiary.data.model.UserModel
 import com.example.cropdiary.databinding.FragmentAuthBinding
@@ -24,11 +25,18 @@ import com.example.cropdiary.util.Utilities
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Singleton
 
+@AndroidEntryPoint
+@Singleton
 class AuthFragment : Fragment() {
     private lateinit var binding: FragmentAuthBinding
     private val authViewModel: AuthViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
+    @Inject
+    lateinit var googleServerClientIdProvider: GoogleServerClientIdProvider
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentAuthBinding.inflate(layoutInflater)
@@ -61,7 +69,7 @@ class AuthFragment : Fragment() {
                 it.exceptionOrNull()?.message?.toInt()?.let { it1 -> getString(it1) }
                     ?.let { it2 ->
                         Utilities.showErrorAlert(
-                            requireContext(),
+                            requireActivity(),
                             it2
                         )
                     }
@@ -84,7 +92,7 @@ class AuthFragment : Fragment() {
                     it.exceptionOrNull()?.message?.toInt()?.let { it1 -> getString(it1) }
                         ?.let { it2 ->
                             Utilities.showErrorAlert(
-                                requireContext(),
+                                requireActivity(),
                                 it2
                             )
                         }
@@ -109,18 +117,18 @@ class AuthFragment : Fragment() {
             list.add(Pair(editTextEmailAddress, getString(R.string.you_must_enter_the_email)))
             list.add(Pair(editTextPassword, getString(R.string.you_must_enter_the_password)))
 
-            if (!Utilities.noEmpty(list, requireContext())) {
+            if (!Utilities.noEmpty(list, requireActivity())) {
                 return@with
             }
             if (!Utilities.isValid(
                     editTextEmailAddress,
                     binding.editTextPassword,
-                    requireContext()
+                    requireActivity()
                 )
             ) {
                 return@with
             }
-            if (!Utilities.networkConnection(requireContext())) {
+            if (!Utilities.networkConnection(requireActivity())) {
                 return@with
             }
 
@@ -139,15 +147,15 @@ class AuthFragment : Fragment() {
             list.add(Pair(editTextEmailAddress, getString(R.string.you_must_enter_the_email)))
             list.add(Pair(editTextPassword, getString(R.string.you_must_enter_the_password)))
 
-            if (!Utilities.noEmpty(list, requireContext())) {
+            if (!Utilities.noEmpty(list, requireActivity())) {
                 return@with
             }
 
-            if (!Utilities.isValid(editTextEmailAddress, requireContext())) {
+            if (!Utilities.isValid(editTextEmailAddress, requireActivity())) {
                 return@with
             }
 
-            if (!Utilities.networkConnection(requireContext())) {
+            if (!Utilities.networkConnection(requireActivity())) {
                 return@with
             }
             SharedPrefUserHelper.addUserPrefs(requireContext(), null, ProviderType.BASIC, null)
@@ -162,7 +170,7 @@ class AuthFragment : Fragment() {
 
     private fun signInWithGoogle() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(FirebaseHelper.GOOGLE_SERVER_CLIENT_ID)
+            .requestIdToken(googleServerClientIdProvider.getGoogleServerClientId())
             .requestEmail()
             .build()
 

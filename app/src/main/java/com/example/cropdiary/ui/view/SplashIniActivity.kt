@@ -13,7 +13,9 @@ import com.example.cropdiary.databinding.ActivitySplashIniBinding
 import com.example.cropdiary.ui.view.Auth.AuthActivity
 import com.example.cropdiary.ui.view.main.MainActivity
 import com.example.cropdiary.ui.view.user.RegistreUserActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashIniActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashIniBinding
     override fun onCreate(savedInstanceState: Bundle?) {

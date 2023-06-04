@@ -8,17 +8,22 @@ import com.example.cropdiary.data.model.UserModel
 import com.example.cropdiary.domain.auth.*
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseUser
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AuthViewModel : ViewModel() {
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val signInWithEmailUseCase :SignInWithEmailUseCase,
+    private val signUpWithEmailUseCase :SignUpWithEmailUseCase,
+    private val signInWithGoogleUseCase :SignInWithGoogleUseCase,
+    private val recoveryPasswordUseCase :RecoveryPasswordUseCase,
+    private val signOutUseCase :SignOutUseCase
+): ViewModel() {
     val authSignInModel = MutableLiveData<Result<FirebaseUser?>>()
     val authSignUpModel = MutableLiveData<Result<FirebaseUser?>>()
     val authResultModel = MutableLiveData<Result<Boolean>>()
-    private var signInWithEmailUseCase = SignInWithEmailUseCase()
-    private var signUpWithEmailUseCase = SignUpWithEmailUseCase()
-    private var signInWithGoogleUseCase = SignInWithGoogleUseCase()
-    private var recoveryPasswordUseCase = RecoveryPasswordUseCase()
-    private var signOutUseCase = SignOutUseCase()
+
 
     fun signInWithEmail(userModel: UserModel) {
         viewModelScope.launch {

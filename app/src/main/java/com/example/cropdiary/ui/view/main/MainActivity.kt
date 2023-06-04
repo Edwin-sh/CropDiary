@@ -14,12 +14,16 @@ import com.example.cropdiary.data.repository.UserRepository
 import com.example.cropdiary.databinding.ActivityMainBinding
 import com.example.cropdiary.ui.view.Auth.AuthActivity
 import com.example.cropdiary.ui.viewmodel.AuthViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity @Inject constructor(private val googleSignInClient: GoogleSignInClient): AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var email: String
     private lateinit var provider: String
-    private lateinit var userRepository: UserRepository
     private val authViewModel: AuthViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     private fun signOut() {
         authViewModel.signOut(
             ProviderType.valueOf(provider),
-            FirebaseHelper.getGoogleSignInClient(this)
+            googleSignInClient
         )
     }
 }
