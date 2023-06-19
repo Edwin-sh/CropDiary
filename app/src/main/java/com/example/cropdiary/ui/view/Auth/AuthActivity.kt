@@ -14,7 +14,7 @@ class AuthActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction()
-            .add(binding.fragContainerAuth.id, AuthFragment())
+            .add(binding.fragContainerAuth.id, SignInFragment())
             .commit()
     }
 }
