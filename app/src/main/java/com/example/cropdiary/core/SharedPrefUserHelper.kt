@@ -2,7 +2,7 @@ package com.example.cropdiary.core
 
 import android.content.Context
 import com.example.cropdiary.data.auth.ProviderType
-import com.example.cropdiary.data.model.prefs.UserPrefsModel
+import com.example.cropdiary.data.model.UserPrefsModel
 
 object SharedPrefUserHelper {
     private const val FILE_KEY = "com.example.cropdiary.USER_PREFERENCE_FILE_KEY"
