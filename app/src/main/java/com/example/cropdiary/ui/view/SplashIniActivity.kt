@@ -8,7 +8,8 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cropdiary.core.SharedPrefUserHelper
-import com.example.cropdiary.data.model.prefs.UserPrefsModel
+import com.example.cropdiary.core.view.NavigationAuthHelper
+import com.example.cropdiary.data.model.UserPrefsModel
 import com.example.cropdiary.databinding.ActivitySplashIniBinding
 import com.example.cropdiary.ui.view.Auth.AuthActivity
 import com.example.cropdiary.ui.view.main.MainActivity
@@ -46,23 +47,9 @@ class SplashIniActivity : AppCompatActivity() {
     private fun checkUserData() {
         val userPrefs: UserPrefsModel = SharedPrefUserHelper.getUserPrefs(this)
         if (userPrefs.email != null && userPrefs.provider != null) {
-            if (userPrefs.isRegistered) {
-                startActivity(
-                    Intent(this@SplashIniActivity, MainActivity::class.java)
-                )
-            } else {
-                finish()
-
-                startActivity(
-                    Intent(this@SplashIniActivity, RegistreUserActivity::class.java)
-                )
-            }
-            finish()
+            NavigationAuthHelper.showMainOrRegisterActivity(this)
         } else {
-            startActivity(
-                Intent(this@SplashIniActivity, AuthActivity::class.java)
-            )
-            finish()
+            NavigationAuthHelper.showAuthActivity(this)
         }
     }
 }
