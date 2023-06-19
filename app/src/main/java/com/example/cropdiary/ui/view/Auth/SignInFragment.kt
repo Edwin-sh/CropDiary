@@ -46,8 +46,9 @@ class SignInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        //Setup
         setup()
+        // Inflate the layout for this fragment
         return binding.root
     }
 
