@@ -10,7 +10,7 @@
 
     <style name="Theme.CropDiary.Auth" parent="Theme.CropDiary">
         <item name="android:textStyle">bold</item>
-        <item name="editTextStyle">@style/Theme.CropDiary.Auth.editTextAuth</item>
+        <item name="editTextStyle">@style/Theme.CropDiary.EditText.Auth</item>
         <item name="colorAccent">@color/secondary</item>
         <item name="buttonStyle">@style/Theme.CropDiary.button</item>
     </style>

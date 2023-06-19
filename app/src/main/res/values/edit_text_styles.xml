@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CropDiary.EditText.Auth" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/Theme.CropDiary.Text.PrimaryTextBlack</item>
+        <item name="android:textColorHint">@color/secondary_text_black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+    <style name="Theme.CropDiary.EditText.RegistreUser" parent="Theme.CropDiary.EditText.Auth">
+        <item name="android:textColor">@color/Theme.CropDiary.Text.PrimaryTextBlack</item>
+        <item name="android:textColorHint">@color/secondary_text_black</item>
+        <item name="android:textSize">@dimen/Theme.CropDiary.Text.Short</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:background">@drawable/ic_field</item>
+    </style>
+</resources>
