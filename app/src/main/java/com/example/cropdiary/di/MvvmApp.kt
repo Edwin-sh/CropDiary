@@ -1,4 +1,4 @@
-package com.example.cropdiary
+package com.example.cropdiary.di
 
 import android.app.Application
 import com.example.cropdiary.ui.view.user.RegistreUserActivity
