@@ -3,6 +3,7 @@
     <string name="sing_in_with_google">Iniciar Sesion Con Google</string>
     <string name="email">Correo</string>
     <string name="password">Contraseña</string>
+    <string name="repeat_your_password">Repite tu contraseña</string>
     <string name="forgot_your_password">¿Olvidaste tu contraseña?</string>
     <string name="sign_in">Acceder</string>
     <string name="sign_up">Registrar</string>

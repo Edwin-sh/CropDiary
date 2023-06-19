@@ -21,4 +21,10 @@
     <string name="fifth_term">5.    Payments: Currently, CropDiary does not process payments within the application. If payment features are incorporated in future updates, secure methods will be used, and you will be clearly informed about the processes and policies related to such payments.</string>
     <string name="sixth_term">6.    Cookies: CropDiary uses cookies and similar technologies to enhance your user experience and provide additional features. You can adjust your cookie preferences in your device settings.</string>
     <string name="final_text_privacy_terms">By using CropDiary, you confirm that you have read, understood, and accepted our privacy and data handling policies.\nIf you have any questions, concerns, or requests related to your personal data, please contact us at [contact email], and we will be happy to assist you.\nWe appreciate your trust in using CropDiary to effectively and securely manage your crops.\n\nThe CropDiary Team</string>
+    <string name="you_must_enter_your_names">You must enter your names</string>
+    <string name="you_must_enter_your_last_names">You must enter your last names</string>
+    <string name="you_must_enter_your_phone_number">You must enter your phone number</string>
+    <string name="you_must_enter_your_id_card">You must enter your ID Number</string>
+    <string name="enetr_a_valid_name">Enter a valid name</string>
+    <string name="enter_a_valid_last_name">Enter a valid Last name</string>
 </resources>

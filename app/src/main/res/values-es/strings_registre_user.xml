@@ -4,10 +4,10 @@
     <string name="registration_form">Formulario De Registro</string>
     <string name="cancel">Cancelar</string>
     <string name="save">Guardar</string>
-    <string name="names">Names</string>
-    <string name="last_names">Last Names</string>
-    <string name="phone_number">Phone number</string>
-    <string name="id_number">ID Number</string>
+    <string name="names">Nombres</string>
+    <string name="last_names">Apellidos</string>
+    <string name="phone_number">Número de teléfono</string>
+    <string name="id_number">Número de documento</string>
     <string name="by_registering_you_accept_our">Al registrarte, aceptas nuestras</string>
     <string name="privacy_and_data_processing_policies">Políticas de Privacidad y Tratamiento de Datos</string>
     <string name="accept_the_privacy_confirmation">Confirmo que he leído y acepto las Políticas de Privacidad y Tratamiento de Datos</string>
@@ -21,4 +21,10 @@
     <string name="fifth_term">5.    Pagos: Actualmente, CropDiary no procesa pagos dentro de la aplicación. Si en futuras actualizaciones se incorporan funciones de pago, se utilizarán métodos seguros y se te informará claramente sobre los procesos y las políticas relacionadas con dichos pagos.</string>
     <string name="sixth_term">6.    Cookies: CropDiary utiliza cookies y tecnologías similares para mejorar tu experiencia de usuario y ofrecerte funciones adicionales. Puedes ajustar tus preferencias de cookies en la configuración de tu dispositivo.</string>
     <string name="final_text_privacy_terms">Al utilizar CropDiary, confirmas que has leído, entendido y aceptado nuestras políticas de privacidad y tratamiento de datos.\nSi tienes alguna pregunta, inquietud o solicitud relacionada con tus datos personales, por favor, contáctanos a través de [correo de contacto] y estaremos encantados de ayudarte.\nAgradecemos tu confianza al utilizar CropDiary para gestionar tus cultivos de manera efectiva y segura.\n\nEl equipo de CropDiary</string>
+    <string name="you_must_enter_your_names">Debes ingresar tus nombres</string>
+    <string name="you_must_enter_your_last_names">Debes Ingresar tus apellidos</string>
+    <string name="you_must_enter_your_phone_number">Debes ingresar tu número de teléfono</string>
+    <string name="you_must_enter_your_id_card">Debes ingresar tu número de documento</string>
+    <string name="enetr_a_valid_name">Ingrese nombres validos</string>
+    <string name="enter_a_valid_last_name">Ingrese apellidos validos</string>
 </resources>
