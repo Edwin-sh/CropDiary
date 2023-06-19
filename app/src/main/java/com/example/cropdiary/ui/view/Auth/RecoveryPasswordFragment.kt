@@ -12,7 +12,9 @@ import com.example.cropdiary.databinding.FragmentRecoveryPasswordBinding
 import com.example.cropdiary.ui.viewmodel.AuthViewModel
 import com.example.cropdiary.core.util.utilities
 import com.example.cropdiary.core.view.dialogs
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecoveryPasswordFragment : Fragment() {
     private lateinit var binding: FragmentRecoveryPasswordBinding
     private val authViewModel: AuthViewModel by viewModels()
