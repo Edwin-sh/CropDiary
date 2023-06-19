@@ -10,7 +10,8 @@ import androidx.fragment.app.viewModels
 import com.example.cropdiary.R
 import com.example.cropdiary.databinding.FragmentRecoveryPasswordBinding
 import com.example.cropdiary.ui.viewmodel.AuthViewModel
-import com.example.cropdiary.util.Utilities
+import com.example.cropdiary.core.util.utilities
+import com.example.cropdiary.core.view.dialogs
 
 class RecoveryPasswordFragment : Fragment() {
     private lateinit var binding: FragmentRecoveryPasswordBinding
@@ -40,7 +41,7 @@ class RecoveryPasswordFragment : Fragment() {
         authViewModel.authResultModel.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.isSuccess) {
-                    Utilities.showSuccesAlert(
+                    dialogs.showSuccesAlert(
                         requireContext(),
                         getString(R.string.we_have_sent_an_email_to_reset_your_password),
                         ::regress
@@ -48,7 +49,7 @@ class RecoveryPasswordFragment : Fragment() {
                 } else if (it.isFailure) {
                     it.exceptionOrNull()?.message?.toInt()?.let { it1 -> getString(it1) }
                         ?.let { it2 ->
-                            Utilities.showErrorAlert(
+                            dialogs.showErrorAlert(
                                 requireActivity(),
                                 it2
                             )
@@ -64,9 +65,9 @@ class RecoveryPasswordFragment : Fragment() {
 
     private fun recoveryPassword() {
         with(binding) {
-            if (!Utilities.noEmpty(
+            if (!utilities.noEmpty(
                     Pair(
-                        editTextEmailAddress,
+                        edTxEmailAddressSignIn,
                         getString(R.string.you_must_enter_the_email)
                     ), requireActivity()
                 )
@@ -74,15 +75,15 @@ class RecoveryPasswordFragment : Fragment() {
                 return@with
             }
 
-            if (!Utilities.isValid(editTextEmailAddress, requireActivity())) {
+            if (!utilities.isValid(edTxEmailAddressSignIn, requireActivity())) {
                 return@with
             }
 
-            if (!Utilities.networkConnection(requireActivity())) {
+            if (!utilities.networkConnection(requireActivity())) {
                 return@with
             }
 
-            authViewModel.recoveryPassword(editTextEmailAddress.text.toString())
+            authViewModel.recoveryPassword(edTxEmailAddressSignIn.text.toString())
         }
     }
 }
