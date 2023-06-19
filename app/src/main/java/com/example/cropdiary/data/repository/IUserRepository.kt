@@ -4,7 +4,7 @@ import com.example.cropdiary.data.model.UserModel
 
 interface IUserRepository {
 
-    suspend fun create(userUserModel: UserModel): UserModel
+    suspend fun createUser(userModel: UserModel): (Result<Boolean>)
 
     suspend fun getUser(email: String): (Result<UserModel?>)
 }
