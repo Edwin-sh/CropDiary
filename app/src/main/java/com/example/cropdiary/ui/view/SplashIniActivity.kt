@@ -1,7 +1,6 @@
 package com.example.cropdiary.ui.view
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.AttributeSet
@@ -11,9 +10,6 @@ import com.example.cropdiary.core.SharedPrefUserHelper
 import com.example.cropdiary.core.view.NavigationAuthHelper
 import com.example.cropdiary.data.model.UserPrefsModel
 import com.example.cropdiary.databinding.ActivitySplashIniBinding
-import com.example.cropdiary.ui.view.Auth.AuthActivity
-import com.example.cropdiary.ui.view.main.MainActivity
-import com.example.cropdiary.ui.view.user.RegistreUserActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

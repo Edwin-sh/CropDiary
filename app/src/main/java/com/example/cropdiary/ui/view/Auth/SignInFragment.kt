@@ -16,7 +16,7 @@ import com.example.cropdiary.core.view.ViewVisibilityHelper
 import com.example.cropdiary.data.auth.ProviderType
 import com.example.cropdiary.data.model.FirebaseUserModel
 import com.example.cropdiary.databinding.FragmentSignInBinding
-import com.example.cropdiary.ui.view.main.*
+import com.example.cropdiary.ui.view.home.*
 import com.example.cropdiary.ui.viewmodel.AuthViewModel
 import com.example.cropdiary.ui.viewmodel.UserViewModel
 import com.example.cropdiary.core.view.dialogs

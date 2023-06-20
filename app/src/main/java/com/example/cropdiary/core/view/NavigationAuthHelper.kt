@@ -11,7 +11,7 @@ import com.example.cropdiary.core.SharedPrefUserHelper
 import com.example.cropdiary.ui.view.Auth.AuthActivity
 import com.example.cropdiary.ui.view.Auth.RecoveryPasswordFragment
 import com.example.cropdiary.ui.view.Auth.SignUpFragment
-import com.example.cropdiary.ui.view.main.MainActivity
+import com.example.cropdiary.ui.view.home.HomeActivity
 import com.example.cropdiary.ui.view.user.RegistreUserActivity
 
 object NavigationAuthHelper {
@@ -38,7 +38,7 @@ object NavigationAuthHelper {
     fun showMainOrRegisterActivity(activity: Activity) {
         if (SharedPrefUserHelper.getUserPrefs(activity).isRegistered) {
             activity.startActivity(
-                Intent(activity, MainActivity::class.java)
+                Intent(activity, HomeActivity::class.java)
             )
             activity.finish()
         } else {
