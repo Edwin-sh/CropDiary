@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import com.example.cropdiary.R
 import com.example.cropdiary.databinding.FragmentRecoveryPasswordBinding
 import com.example.cropdiary.ui.viewmodel.AuthViewModel
-import com.example.cropdiary.core.util.utilities
-import com.example.cropdiary.core.view.dialogs
+import com.example.cropdiary.core.util.Utilities
+import com.example.cropdiary.core.view.Dialogs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,7 +43,7 @@ class RecoveryPasswordFragment : Fragment() {
         authViewModel.authResultModel.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.isSuccess) {
-                    dialogs.showSuccesAlert(
+                    Dialogs.showSuccesAlert(
                         requireContext(),
                         getString(R.string.we_have_sent_an_email_to_reset_your_password),
                         ::regress
@@ -51,7 +51,7 @@ class RecoveryPasswordFragment : Fragment() {
                 } else if (it.isFailure) {
                     it.exceptionOrNull()?.message?.toInt()?.let { it1 -> getString(it1) }
                         ?.let { it2 ->
-                            dialogs.showErrorAlert(
+                            Dialogs.showErrorAlert(
                                 requireActivity(),
                                 it2
                             )
@@ -67,7 +67,7 @@ class RecoveryPasswordFragment : Fragment() {
 
     private fun recoveryPassword() {
         with(binding) {
-            if (!utilities.noEmpty(
+            if (!Utilities.noEmpty(
                     Pair(
                         edTxEmailAddressSignIn,
                         getString(R.string.you_must_enter_the_email)
@@ -77,11 +77,11 @@ class RecoveryPasswordFragment : Fragment() {
                 return@with
             }
 
-            if (!utilities.isValid(edTxEmailAddressSignIn, requireActivity())) {
+            if (!Utilities.isValid(edTxEmailAddressSignIn, requireActivity())) {
                 return@with
             }
 
-            if (!utilities.networkConnection(requireActivity())) {
+            if (!Utilities.networkConnection(requireActivity())) {
                 return@with
             }
 

@@ -11,16 +11,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.cropdiary.R
 import com.example.cropdiary.core.SharedPrefUserHelper
+import com.example.cropdiary.core.util.Utilities
 import com.example.cropdiary.core.view.NavigationAuthHelper
-import com.example.cropdiary.core.view.ViewVisibilityHelper
+import com.example.cropdiary.core.view.ViewHelper
 import com.example.cropdiary.data.auth.ProviderType
 import com.example.cropdiary.data.model.FirebaseUserModel
 import com.example.cropdiary.databinding.FragmentSignInBinding
 import com.example.cropdiary.ui.view.home.*
 import com.example.cropdiary.ui.viewmodel.AuthViewModel
 import com.example.cropdiary.ui.viewmodel.UserViewModel
-import com.example.cropdiary.core.view.dialogs
-import com.example.cropdiary.core.util.utilities
+import com.example.cropdiary.core.view.Dialogs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -34,7 +34,6 @@ class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     private val authViewModel: AuthViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
-
     @Inject
     lateinit var googleSignInOptions: GoogleSignInOptions
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +72,7 @@ class SignInFragment : Fragment() {
             } else if (it.isFailure) {
                 it.exceptionOrNull()?.message?.toInt()?.let { it1 -> getString(it1) }
                     ?.let { it2 ->
-                        dialogs.showErrorAlert(
+                        Dialogs.showErrorAlert(
                             requireActivity(),
                             it2
                         )
@@ -82,7 +81,7 @@ class SignInFragment : Fragment() {
             }
         }
         authViewModel._progressbar.observe(viewLifecycleOwner) {
-            ViewVisibilityHelper.setVisibility(binding.progressBarSignIn, it)
+            ViewHelper.setVisibility(binding.progressBarSignIn, it)
         }
 
         userViewModel.userResultModel.observe(viewLifecycleOwner) {
@@ -97,7 +96,7 @@ class SignInFragment : Fragment() {
             }
         }
         userViewModel._progressbar.observe(viewLifecycleOwner) {
-            ViewVisibilityHelper.setVisibility(binding.progressBarSignIn, it)
+            ViewHelper.setVisibility(binding.progressBarSignIn, it)
         }
     }
 
@@ -107,15 +106,15 @@ class SignInFragment : Fragment() {
             list.add(Pair(edTxEmailAddressSignIn, getString(R.string.you_must_enter_the_email)))
             list.add(Pair(edTxPasswordSignIn, getString(R.string.you_must_enter_the_password)))
 
-            if (!utilities.noEmpty(list, requireActivity())) {
+            if (!Utilities.noEmpty(list, requireActivity())) {
                 return@with
             }
 
-            if (!utilities.isValid(edTxEmailAddressSignIn, requireActivity())) {
+            if (!Utilities.isValid(edTxEmailAddressSignIn, requireActivity())) {
                 return@with
             }
 
-            if (!utilities.networkConnection(requireActivity())) {
+            if (!Utilities.networkConnection(requireActivity())) {
                 return@with
             }
             SharedPrefUserHelper.addUserPrefs(requireContext(), null, ProviderType.BASIC, null)
