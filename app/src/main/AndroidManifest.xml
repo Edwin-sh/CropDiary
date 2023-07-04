@@ -16,6 +16,13 @@
         android:theme="@style/Theme.CropDiary"
         tools:targetApi="31">
         <activity
+            android:name=".ui.view.home.SecondActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.crops.AddCropActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_crop" />
+        <activity
             android:name=".ui.view.home.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
@@ -23,7 +30,6 @@
         <activity
             android:name=".ui.view.user.RegistreUserActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.view.SplashIniActivity"
             android:exported="true">

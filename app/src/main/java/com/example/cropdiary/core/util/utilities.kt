@@ -1,22 +1,24 @@
 package com.example.cropdiary.core.util
 
 import android.app.Activity
+import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 import com.example.cropdiary.R
-import com.example.cropdiary.core.view.dialogs
+import com.example.cropdiary.core.view.Dialogs
 import org.apache.commons.validator.EmailValidator
 import org.apache.commons.validator.GenericValidator
 
-object utilities : AppCompatActivity() {
+object Utilities {
+    private val patron = Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s]+\$")
+
     fun networkConnection(activity: Activity): Boolean { //Internet Access Verification
         val con = activity.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = con.activeNetworkInfo
         return if (networkInfo != null && networkInfo.isConnected) {
             true
         } else {
-            dialogs.showErrorAlert(
+            Dialogs.showErrorAlert(
                 activity,
                 activity.getString(R.string.you_dont_have_an_internet_connection)
             )
@@ -24,18 +26,29 @@ object utilities : AppCompatActivity() {
         }
     }
 
-    fun isAlpha(list: List<Pair<EditText, String>>, activity: Activity):Boolean{
-        val patron=Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s]+\$")
-        for(value in list){
-            if (!patron.matches(value.first.text.toString())){
-                dialogs.showErrorAlert(activity, value.second)
+    fun isAlpha(value: Pair<EditText, String>, activity: Activity): Boolean {
+        return if (!patron.matches(value.first.text.toString())) {
+            Dialogs.showErrorAlert(activity, value.second)
+            false
+        } else {
+            true
+        }
+
+    }
+
+    fun isAlpha(list: List<Pair<EditText, String>>, activity: Activity): Boolean {
+        for (value in list) {
+            if (!patron.matches(value.first.text.toString())) {
+                Dialogs.showErrorAlert(activity, value.second)
+                return false
             }
         }
         return true
     }
+
     fun isValid(email: EditText, activity: Activity): Boolean {
         if (!validateEmail(email.text.toString())) {
-            dialogs.showErrorAlert(
+            Dialogs.showErrorAlert(
                 activity,
                 activity.getString(R.string.you_must_enter_a_valid_email)
             )
@@ -46,7 +59,7 @@ object utilities : AppCompatActivity() {
 
     fun isValid(email: EditText, password: EditText, activity: Activity): Boolean {
         if (!validateEmail(email.text.toString())) {
-            dialogs.showErrorAlert(
+            Dialogs.showErrorAlert(
                 activity,
                 activity.getString(R.string.you_must_enter_a_valid_email)
             )
@@ -74,14 +87,14 @@ object utilities : AppCompatActivity() {
             if (patron.matches(pass)) {
                 true
             } else {
-                dialogs.showErrorAlert(
+                Dialogs.showErrorAlert(
                     activity,
                     activity.getString(R.string.password_must_have_at_least_one_digit_and_one_uppercase_letter)
                 )
                 false
             }
         } else {
-            dialogs.showErrorAlert(
+            Dialogs.showErrorAlert(
                 activity,
                 activity.getString(R.string.the_password_must_be_at_least_8_digits)
             )
@@ -92,7 +105,7 @@ object utilities : AppCompatActivity() {
     fun noEmpty(list: List<Pair<EditText, String>>, activity: Activity): Boolean {
         for (value in list) {
             if (value.first.text.isEmpty()) {
-                dialogs.showErrorAlert(activity, value.second)
+                Dialogs.showErrorAlert(activity, value.second)
                 return false
             }
         }
@@ -101,7 +114,7 @@ object utilities : AppCompatActivity() {
 
     fun noEmpty(pair: Pair<EditText, String>, activity: Activity): Boolean {
         return if (pair.first.text.isEmpty()) {
-            dialogs.showErrorAlert(activity, pair.second)
+            Dialogs.showErrorAlert(activity, pair.second)
             false
         } else {
             true
