@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="20dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="12dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvTitleFormWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info new work"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Nombre"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNameNewCrop"
+            app:layout_constraintEnd_toStartOf="@+id/editTextNameNewCrop"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editTextNameNewCrop" />
+
+        <EditText
+            android:id="@+id/editTextNameNewCrop"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:hint="Name"
+            android:textSize="20sp"
+            android:layout_marginTop="@dimen/dp_2"
+            app:layout_constraintEnd_toStartOf="@id/btn_add_work"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleFormWork" />
+
+        <Button
+            android:id="@+id/btn_add_work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNameNewCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editTextNameNewCrop"
+            app:layout_constraintTop_toTopOf="@+id/editTextNameNewCrop" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
