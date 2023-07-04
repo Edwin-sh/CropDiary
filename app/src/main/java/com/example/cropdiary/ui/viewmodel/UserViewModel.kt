@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cropdiary.data.model.UserModel
 import com.example.cropdiary.domain.user.CreateUserUseCase
-import com.example.cropdiary.domain.user.GetUserUseCase
+import com.example.cropdiary.domain.user.GetDataUserUseCase
 import com.example.cropdiary.domain.user.IsRegisteredUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(
     private val createUserUseCase: CreateUserUseCase,
     private val isRegisteredUseCase: IsRegisteredUseCase,
-    private val getUserUseCase: GetUserUseCase
+    private val getDataUserUseCase: GetDataUserUseCase
 ) : ViewModel() {
     val userDataModel = MutableLiveData<Result<UserModel?>>()
     val userResultModel = MutableLiveData<Result<Boolean>>()
@@ -41,7 +41,7 @@ class UserViewModel @Inject constructor(
     fun getUser(email: String) {
         progressBarHelper.isLoading(true)
         viewModelScope.launch {
-            val result= getUserUseCase(email)
+            val result= getDataUserUseCase(email)
             progressBarHelper.isLoading(false)
             userDataModel.postValue(result)
         }
