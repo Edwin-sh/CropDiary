@@ -19,7 +19,7 @@ class SplashIniActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashIniBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        SharedPrefUserHelper.clearPrefs(this)
+        //SharedPrefUserHelper.clearPrefs(this)
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
