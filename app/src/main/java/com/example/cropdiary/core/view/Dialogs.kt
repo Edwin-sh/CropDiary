@@ -4,13 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.example.cropdiary.R
 
-object dialogs {
+object Dialogs {
     fun showErrorAlert(activity: Activity, message: String) {
         val builder = AlertDialog.Builder(activity)
         val view=activity.layoutInflater.inflate(R.layout.alert_dialog, null)
