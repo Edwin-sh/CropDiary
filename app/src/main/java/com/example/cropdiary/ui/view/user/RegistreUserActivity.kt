@@ -8,14 +8,15 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cropdiary.R
 import com.example.cropdiary.core.SharedPrefUserHelper
+import com.example.cropdiary.core.util.Utilities
+import com.example.cropdiary.core.view.Dialogs
 import com.example.cropdiary.core.view.NavigationAuthHelper
+import com.example.cropdiary.core.view.ViewHelper
 import com.example.cropdiary.data.auth.ProviderType
 import com.example.cropdiary.data.model.UserModel
 import com.example.cropdiary.databinding.ActivityCreateUserBinding
 import com.example.cropdiary.ui.viewmodel.AuthViewModel
 import com.example.cropdiary.ui.viewmodel.UserViewModel
-import com.example.cropdiary.core.view.dialogs
-import com.example.cropdiary.core.util.utilities
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -39,12 +40,14 @@ class RegistreUserActivity : AppCompatActivity() {
         setup()
     }
 
+
     private fun setup() {
         val userPrefs = SharedPrefUserHelper.getUserPrefs(this)
         email = userPrefs.email.toString()
         provider = userPrefs.provider.toString()
 
         with(binding) {
+            ViewHelper.setVisibility(progressBarRegistreUser, false)
             buttonCancelaRegistro.setOnClickListener {
                 authViewModel.signOut(
                     ProviderType.valueOf(provider),
@@ -57,7 +60,7 @@ class RegistreUserActivity : AppCompatActivity() {
                 buttonSave.isEnabled = checkBoxAccept.isChecked
             }
             tvMessagePrivacyLink.setOnClickListener {
-                dialogs.showPrivacyTermsDialog(this@RegistreUserActivity)
+                Dialogs.showPrivacyTermsDialog(this@RegistreUserActivity)
             }
 
             buttonSave.setOnClickListener { save() }
@@ -68,14 +71,16 @@ class RegistreUserActivity : AppCompatActivity() {
                 NavigationAuthHelper.showAuthActivity(this)
             }
         }
+        userViewModel._progressbar.observe(this) {
+            ViewHelper.setVisibility(binding.progressBarRegistreUser, it)
+        }
         userViewModel.userResultModel.observe(this) {
-            if (it.getOrNull()==true) {
-                dialogs.showSuccesAlert(
+            if (it.getOrNull() == true) {
+                Dialogs.showSuccesAlert(
                     this,
                     "Registration successful, you are now part of the CropDiary family",
                     ::okButton
                 )
-
             }
         }
     }
@@ -115,7 +120,10 @@ class RegistreUserActivity : AppCompatActivity() {
                     getString(R.string.you_must_enter_your_id_card)
                 )
             )
-            if (!utilities.noEmpty(list, this@RegistreUserActivity)) {
+            if (!Utilities.noEmpty(
+                    list, this@RegistreUserActivity
+                )
+            ) {
                 return@with
             }
             val listAlpha = mutableListOf<Pair<EditText, String>>()
@@ -131,7 +139,7 @@ class RegistreUserActivity : AppCompatActivity() {
                     getString(R.string.enter_a_valid_last_name)
                 )
             )
-            if (!utilities.isAlpha(listAlpha, this@RegistreUserActivity)) {
+            if (!Utilities.isAlpha(listAlpha, this@RegistreUserActivity)) {
                 return@with
             }
             userModel = UserModel(
@@ -147,7 +155,7 @@ class RegistreUserActivity : AppCompatActivity() {
     }
 
     private fun okButton(context: Context) {
-        SharedPrefUserHelper.addUserPrefs(this,null, null, true)
+        SharedPrefUserHelper.addUserPrefs(this, null, null, true)
         NavigationAuthHelper.showMainOrRegisterActivity(this)
     }
 }
