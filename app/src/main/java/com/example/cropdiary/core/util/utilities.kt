@@ -101,6 +101,13 @@ object Utilities {
             false
         }
     }
+    /*fun noEmpty(editText: EditText): Boolean {
+        if (value.first.text.isEmpty()) {
+                return false
+            }
+        }
+        return true
+    }*/
 
     fun noEmpty(list: List<Pair<EditText, String>>, activity: Activity): Boolean {
         for (value in list) {
