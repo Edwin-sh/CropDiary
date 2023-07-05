@@ -1,6 +1,5 @@
 package com.example.cropdiary.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,7 +19,7 @@ class CropsViewModel @Inject constructor(
     val cropsData = MutableLiveData<Result<MutableList<CropModel>>>()
     val cropsResult = MutableLiveData<Result<Boolean>>()
 
-    fun getDAta() {
+    fun getData() {
         viewModelScope.launch {
             cropsData.postValue(getAllCropsUseCase.invoke())
         }

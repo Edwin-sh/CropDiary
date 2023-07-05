@@ -5,18 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcont.adapter.MyItemRecyclerViewAdapter
-import com.example.cropdiary.R
 import com.example.cropdiary.core.adapter.WorkNewCropAdapter
-import com.example.cropdiary.core.util.Utilities
+import com.example.cropdiary.core.util.CropsUtilities
 import com.example.cropdiary.core.view.ViewHelper
-import com.example.cropdiary.data.model.CropInfoModel
-import com.example.cropdiary.data.model.CropModel
 import com.example.cropdiary.data.model.WorkModel
 import com.example.cropdiary.databinding.FragmentHomeCropsBinding
 import com.example.cropdiary.ui.viewmodel.CropsViewModel
@@ -52,7 +48,7 @@ class HomeCropsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        cropsViewModel.getDAta()
+        cropsViewModel.getData()
         setup()
         loadViewStates()
         return binding.root
@@ -60,41 +56,41 @@ class HomeCropsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        with(binding){
-            with(homeCropsFragmentViewModel){
-                if(includeFormInfoNewCrop.editTextNameNewCrop.text.toString().isNotEmpty()){
+        with(binding) {
+            with(homeCropsFragmentViewModel) {
+                if (includeFormInfoNewCrop.editTextNameNewCrop.text.toString().isNotEmpty()) {
                     saveCropName(includeFormInfoNewCrop.editTextNameNewCrop.text.toString())
-                }
-                else{
+                } else {
                     clearCropName()
                 }
 
-                if (addWorkForm.editTextNameNewCrop.text.toString().isNotEmpty()){
+                if (addWorkForm.editTextNameNewCrop.text.toString().isNotEmpty()) {
                     saveWorkName(addWorkForm.editTextNameNewCrop.text.toString())
-                }else{
+                } else {
                     clearWorkName()
                 }
             }
         }
     }
+
     private fun loadViewStates() {
         with(binding) {
-            with(homeCropsFragmentViewModel){
+            with(homeCropsFragmentViewModel) {
                 with(ViewHelper) {
-                    with(includeFormInfoNewCrop){
-                        checkBoxDescriptionCrop.observe(viewLifecycleOwner){
+                    with(includeFormInfoNewCrop) {
+                        checkBoxDescriptionCrop.observe(viewLifecycleOwner) {
                             setVisibility(editTextNameDescriptioCrop, it)
                         }
                         cropName.observe(viewLifecycleOwner) {
-                            if (it!=null){
+                            if (it != null) {
                                 editTextSetText(editTextNameNewCrop, it)
-                            }else{
+                            } else {
                                 clearEditText(editTextNameNewCrop)
                             }
                         }
 
                     }
-                    listWorksContainer.observe(viewLifecycleOwner){
+                    listWorksContainer.observe(viewLifecycleOwner) {
                         setVisibility(cardviewWorksCrops, it)
                     }
                     btnAdd.observe(viewLifecycleOwner) {
@@ -107,11 +103,11 @@ class HomeCropsFragment : Fragment() {
                     switch.observe(viewLifecycleOwner) {
                         setVisibility(containerAddWorksNewCrop, it)
                     }
-                    with(addWorkForm){
+                    with(addWorkForm) {
                         workName.observe(viewLifecycleOwner) {
-                            if (it!=null){
+                            if (it != null) {
                                 editTextSetText(editTextNameNewCrop, it)
-                            }else{
+                            } else {
                                 clearEditText(editTextNameNewCrop)
                             }
                         }
@@ -122,7 +118,7 @@ class HomeCropsFragment : Fragment() {
     }
 
     private fun setup() {
-        with(cropsViewModel){
+        with(cropsViewModel) {
             cropsData.observe(viewLifecycleOwner) {
                 if (it.isSuccess) {
                     adapter.setData(it.getOrNull())
@@ -133,16 +129,16 @@ class HomeCropsFragment : Fragment() {
                 if (it.isSuccess) {
                     Log.w("Tag Crop", "Se creó")
                     initStateForms()
-                    cropsViewModel.getDAta()
+                    cropsViewModel.getData()
                 }
             }
-            with(worksViewModel){
+            with(worksViewModel) {
                 worksData.observe(viewLifecycleOwner) {
                     worksList = it
-                    with(homeCropsFragmentViewModel){
-                        if (it.isEmpty()){
+                    with(homeCropsFragmentViewModel) {
+                        if (it.isEmpty()) {
                             hideListWorks()
-                        }else{
+                        } else {
                             showListWorks()
                         }
                     }
@@ -160,17 +156,17 @@ class HomeCropsFragment : Fragment() {
         }
 
         with(binding) {
-            with(homeCropsFragmentViewModel){
+            with(homeCropsFragmentViewModel) {
                 btnAddCultivo.setOnClickListener {
                     hideBtnAddCrop()
                     showNewCropForm()
                 }
 
-                with(includeFormInfoNewCrop){
+                with(includeFormInfoNewCrop) {
                     checkBox.setOnClickListener {
-                        if (includeFormInfoNewCrop.checkBox.isChecked){
+                        if (includeFormInfoNewCrop.checkBox.isChecked) {
                             setCheckBoxCropStateOn()
-                        }else{
+                        } else {
                             setCheckBoxCropStateOff()
                         }
                     }
@@ -200,48 +196,29 @@ class HomeCropsFragment : Fragment() {
 
     private fun addCrop() {
         with(binding) {
-            if (!Utilities.noEmpty(
-                    Pair(includeFormInfoNewCrop.editTextNameNewCrop, "You must enter the crop name"),
-                    requireActivity()
-                )
-            ) {
-                return@with
+            with(includeFormInfoNewCrop){
+                CropsUtilities.validateCrop(editTextNameNewCrop, requireActivity(), worksList, checkBox, editTextNameDescriptioCrop) {
+                    if (it != null) {
+                        cropsViewModel.createCrop(it)
+                    }
+                }
             }
-            if (!Utilities.isAlpha(
-                    Pair(includeFormInfoNewCrop.editTextNameNewCrop, "You must enter a valid crop name"),
-                    requireActivity()
-                )
-            ) {
-                return@with
-            }
-            cropsViewModel.createCrop(CropModel(CropInfoModel(includeFormInfoNewCrop.editTextNameNewCrop.text.toString()), worksList))
         }
     }
 
-    private fun addWork(){
+
+    private fun addWork() {
         with(binding) {
-            if (!Utilities.noEmpty(
-                    Pair(addWorkForm.editTextNameNewCrop, "You must enter the work name"),
-                    requireActivity()
-                )
-            ) {
-                return@with
+            CropsUtilities.validateWork(addWorkForm.editTextNameNewCrop, requireActivity(), worksList) {
+                if (it != null) {
+                    cropsViewModel.worksViewModel.addWork(it)
+                }
             }
-            if (!Utilities.isAlpha(
-                    Pair(addWorkForm.editTextNameNewCrop, "You must enter a valid work name"),
-                    requireActivity()
-                )
-            ) {
-                return@with
-            }
-            cropsViewModel.worksViewModel.addWork(
-                WorkModel(
-                    addWorkForm.editTextNameNewCrop.text.toString(),
-                    "Description"
-                )
-            )
         }
     }
+
+
+
     private fun initStateForms() {
         ViewHelper.clearEditText(binding.includeFormInfoNewCrop.editTextNameNewCrop)
         homeCropsFragmentViewModel.restoreInitialState()

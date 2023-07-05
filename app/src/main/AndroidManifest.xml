@@ -19,10 +19,6 @@
             android:name=".ui.view.home.SecondActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.view.crops.AddCropActivity"
-            android:exported="false"
-            android:label="@string/title_activity_add_crop" />
-        <activity
             android:name=".ui.view.home.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
