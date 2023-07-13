@@ -27,6 +27,15 @@ class TasksHelper @Inject constructor() {
         }
     }
 
+    suspend fun getAuthResult(authResult: AuthResult?): Result<FirebaseUser?> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Result.success(authResult?.user)
+            } catch (ex: Exception) {
+                Result.failure<FirebaseUser>(authException(ex))
+            }
+        }
+    }
     suspend fun getDocumentResult(task: Task<DocumentSnapshot>): Result<DocumentSnapshot?> {
         return withContext(Dispatchers.IO) {
             try {
